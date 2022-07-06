@@ -113,11 +113,11 @@ export class ShopApp extends React.Component<
     const { products, isOpen } = this.state;
     return (
       <React.Fragment>
-        <div className={styles.header}>
+        {/* <div className={styles.header}>
           <div className={['container', styles.headerImageWrapper].join(' ')}>
             <img src={logo} className={styles.headerImage} />
           </div>
-        </div>
+        </div> */}
 
         <>
            <span
