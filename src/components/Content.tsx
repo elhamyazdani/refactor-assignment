@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import Banners from './Banners'
 import ProductInterface from '../models/product.model'
 import ProductList from './product/ProductList'
+import AddProduct from './product/AddProduct'
 
 const Content: React.FC = () => {
   const [products, setProducts] = React.useState<ProductInterface[]>([])
@@ -20,6 +21,7 @@ const Content: React.FC = () => {
   return (
     <div className='container'>
       <Banners />
+      <AddProduct addProduct={() => { }} />
       <ProductList products={products} onFav={() => {}} />
     </div>
   )
