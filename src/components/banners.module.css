@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  padding: 32px 0;
+  justify-content: space-evenly;
+}
+
+.banner {
+  display: block;
+  max-height: 15em;
+}
