@@ -6,7 +6,7 @@ const Header: React.FC = () => {
   return (
     <div className={styles.header}>
       <div className={`container ${styles.headerImageWrapper}`}>
-        <img src={logo} className={styles.headerImage} />
+        <img src={logo} className={styles.headerImage} alt={'Droppe Company'}/>
       </div>
     </div>
   )
