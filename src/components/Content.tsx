@@ -1,10 +1,11 @@
 import React from 'react'
+import Banners from './Banners'
 
 const Content: React.FC = () => {
 
   return (
     <div className='container'>
-      Content
+      <Banners />
     </div>
   )
 }
