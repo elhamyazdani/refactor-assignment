@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Banners from './Banners'
 import ProductInterface from '../models/product.model'
 import ProductList from './product/ProductList'
@@ -6,28 +6,16 @@ import ProductList from './product/ProductList'
 const Content: React.FC = () => {
   const [products, setProducts] = React.useState<ProductInterface[]>([])
 
-  // Todo refactor fetch
-  // Todo reverse products
+  //TODO better to use Axios
 
-  fetch('https://fakestoreapi.com/products').then(response => {
-    let jsonResponse = response.json()
-
-    jsonResponse.then(rawData => {
-      let data = []
-
-      for (let i = 0; i < rawData.length; i++) {
-        let updatedProd = rawData[i]
-        data.push(updatedProd)
-      }
-      // this.setState({
-      // products: data
-      // })
-      // this.setState({
-      //   prodCount: data.length
-      // })
-      setProducts(data)
-    })
-  })
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+      .then(response => response.json())
+      .then(data => {
+        let reversedProducts = data.slice().reverse()
+        setProducts(reversedProducts)
+      })
+  }, [])
 
   return (
     <div className='container'>
