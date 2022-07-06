@@ -7,7 +7,7 @@ interface PostsProps {
   onFav: (title: string) => void
 }
 
-const ProductsList: React.FC<PostsProps> = ({ products, onFav }) => {
+const ProductList: React.FC<PostsProps> = ({ products, onFav }) => {
 
     //TODO Make products upside down
   return (
@@ -18,4 +18,4 @@ const ProductsList: React.FC<PostsProps> = ({ products, onFav }) => {
     </div>
   )
 }
-export default ProductsList
+export default ProductList
