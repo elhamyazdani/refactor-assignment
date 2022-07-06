@@ -1,20 +1,15 @@
 import React from 'react'
 import { FaStar } from 'react-icons/fa'
 import styles from './product.module.css'
+import ProductInterface from '../../models/product.model'
 
-const Product: React.FC<{
-  index: number
-  product: {
-    title: string
-    description: string
-    price: number
-    isFavorite: boolean
-    rating: { rate: number; count: number }
-  }
+interface ProductProps {
+  product: ProductInterface
   onFav: (title: string) => void
-}> = ({ product, onFav }) => {
-    
-  // Problem: Now product title can be too long, I just put overflowX as fix now
+}
+
+const Product: React.FC<ProductProps> = ({ product, onFav }) => {
+
   return (
     <div className={styles.productStyle}>
       <div className={styles.productTitle}>{product.title}</div>
