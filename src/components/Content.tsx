@@ -6,6 +6,12 @@ import AddProduct from './product/AddProduct'
 
 const Content: React.FC = () => {
   const [products, setProducts] = React.useState<ProductInterface[]>([])
+  
+  const addProduct = (newProduct: ProductInterface) => {
+    setProducts(prevProducts => {
+      return [...prevProducts, newProduct]
+    })
+  }
 
   //TODO better to use Axios
 
@@ -21,7 +27,7 @@ const Content: React.FC = () => {
   return (
     <div className='container'>
       <Banners />
-      <AddProduct addProduct={() => { }} />
+      <AddProduct addProduct={addProduct} />
       <ProductList products={products} onFav={() => {}} />
     </div>
   )
