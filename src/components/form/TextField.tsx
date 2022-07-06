@@ -1,6 +1,8 @@
 import React from 'react'
+import styles from './text_field.module.css'
 
-//TODO fields need to be separated
+//TODO text and textarea fields need to be separated with a common parent
+
 interface TextFieldProps {
   name: string
   label?: string
@@ -21,9 +23,9 @@ const TextField: React.FC<TextFieldProps> = ({
   handleChange
 }) => {
   return (
-    <div>
+    <div className={styles.formItem}>
       {label && (
-        <label>
+        <label className={styles.label}>
           {`${label} ${isRequired && '*'} :`}
         </label>
       )}
@@ -32,6 +34,7 @@ const TextField: React.FC<TextFieldProps> = ({
         <input
           name={name}
           placeholder={placeholder}
+          className={styles.input}
           onChange={handleChange}
         />
       )}
@@ -39,6 +42,7 @@ const TextField: React.FC<TextFieldProps> = ({
         <textarea
           name={name}
           placeholder={placeholder}
+          className={styles.input}
           onChange={handleChange}
         />
       )}
