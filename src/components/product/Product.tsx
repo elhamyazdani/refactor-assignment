@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaStar } from 'react-icons/fa'
-import styles from './product-list-components.module.css'
+import styles from './product.module.css'
 
 const Product: React.FC<{
   index: number
@@ -13,65 +13,40 @@ const Product: React.FC<{
   }
   onFav: (title: string) => void
 }> = ({ product, onFav }) => {
-  const {
-    product: productClass,
-    productBody,
-    actionBarItem,
-    actionBarItemLabel
-  } = styles
+    
   // Problem: Now product title can be too long, I just put overflowX as fix now
   return (
-    <span
-      className={productClass}
-      style={{
-        display: 'inline-block',
-        overflowX: 'scroll',
-        float: 'none',
-        clear: 'both'
-      }}
-    >
-      <span className={styles['product-title']} style={{ overflowX: 'hidden' }}>
-        {product.title}
-      </span>
+    <div className={styles.productStyle}>
+      <div className={styles.productTitle}>{product.title}</div>
+      <div className={styles.productBody}>
+        {product.rating && <div>Rating: {product.rating.rate}/5</div>}
 
-      <p>
-        <strong>
-          Rating: {product.rating ? `${product.rating.rate}/5` : ''}
-        </strong>
-      </p>
+        <div>Price: {product.price}</div>
 
-      <p>
-        <b>Price: ${+product.price}</b>
-      </p>
-
-      <p className={productBody}>
-        <span>
-          <b>Description:</b>
-        </span>
-        <br />
-        {product.description}
-      </p>
-
-      <span
-        className={styles['action_bar']}
-        style={{ display: 'table', width: '100%' }}
-      >
-        <span
-          className={`${actionBarItem} ${product.isFavorite ? 'active' : ''}`}
+        <div>
+          Description:
+          <div className={styles.productBodyText}>{product.description}</div>
+        </div>
+      </div>
+      <div className={styles.actionBar}>
+        <div
+          className={`${styles.actionBarItem} ${
+            product.isFavorite && 'active'
+          }`}
           role='button'
-          onClick={() => {
+            onClick={() => {
             onFav(product.title)
           }}
         >
-          <FaStar />{' '}
-          <span className={actionBarItemLabel}>
+          <FaStar />
+          <div className={styles.actionBarItemLabel}>
             {!!!!product.isFavorite
               ? 'Remove from favorites'
               : 'Add to favorites'}
-          </span>
-        </span>
-      </span>
-    </span>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
