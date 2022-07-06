@@ -24,7 +24,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
     description: ''
   })
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setFormValues(prev => ({
       ...prev,
@@ -32,7 +32,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
     }))
   }
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     //TODO check required fields are filled
