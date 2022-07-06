@@ -4,6 +4,7 @@ import Button from '../tools/Button'
 import Modal from 'react-modal'
 import { FaTimes } from 'react-icons/fa'
 import ProductInterface from '../../models/product.model'
+import AddProductForm from './AddProductForm'
 
 interface AddProductProps {
   addProduct: (newProduct: ProductInterface) => void
@@ -35,7 +36,8 @@ const AddProduct: React.FC<AddProductProps> = ({ addProduct }) => {
             <FaTimes />
           </div>
 
-          {/* TODO insert Form here */}
+          <AddProductForm addProduct={addProduct} setShowModal={setShowModal} />
+
 
         </div>
       </Modal>

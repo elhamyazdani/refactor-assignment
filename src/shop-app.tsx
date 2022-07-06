@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import { FaTimes } from "react-icons/fa";
 import Button from "./components/tools/Button";
 import ProductList from "./components/product/ProductList";
-import { Form } from "./components/form";
+// import { Form } from "./components/form";
 import logo from "./images/droppe-logo.png";
 import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
@@ -119,7 +119,7 @@ export class ShopApp extends React.Component<
           </div>
         </div> */}
 
-        <>
+        {/* <>
            <span
               className={['container', styles.main].join(' ')}
               style={{margin: '50px inherit', display: 'flex', justifyContent: 'space-evenly'}}
@@ -127,9 +127,9 @@ export class ShopApp extends React.Component<
             <img src={img1} style={{maxHeight: "15em", display: 'block'}} />
             <img src={img2} style={{maxHeight: "15rem", display: 'block'}} />
            </span>
-        </>
+        </> */}
 
-        <div className={['container', styles.main].join(' ')} style={{paddingTop: 0}}>
+        {/* <div className={['container', styles.main].join(' ')} style={{paddingTop: 0}}>
           <div className={styles.buttonWrapper}>
             <span role="button">
                <Button
@@ -175,7 +175,7 @@ export class ShopApp extends React.Component<
                  />
               </div>
            </Modal>
-        </>
+        </> */}
       </React.Fragment>
     );
   }
