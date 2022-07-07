@@ -6,6 +6,7 @@ import styles from './add_product_form.module.css'
 interface AddProductFormProps {
   addProduct: (newProduct: ProductInterface) => void
   setShowModal: (showModal: boolean) => void
+  setShowLoading: (showModal: boolean) => void
 }
 
 async function postData (url = '', payload = {}) {
@@ -30,7 +31,8 @@ const newProductDefaultValues = {
 
 const AddProductForm: React.FC<AddProductFormProps> = ({
   addProduct,
-  setShowModal
+  setShowModal,
+  setShowLoading
 }) => {
   const [showMessage, setShowMessage] = useState<boolean>(false)
 
@@ -62,7 +64,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
       return
     }
 
-    // add fake fetch
+    setShowLoading(true)
     postData('https://fakestoreapi.com/products', {
       ...newProductDefaultValues,
       ...formValues
@@ -73,6 +75,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
           ...newProductDefaultValues,
           ...formValues
         })
+        setShowLoading(false)
       }, 2000)
     })
 

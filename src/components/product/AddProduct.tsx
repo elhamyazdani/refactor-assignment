@@ -10,10 +10,9 @@ interface AddProductProps {
   addProduct: (newProduct: ProductInterface) => void
 }
 
-
 const AddProduct: React.FC<AddProductProps> = ({ addProduct }) => {
-  
   const [showModal, setShowModal] = useState<boolean>(false)
+  const [showLoading, setShowLoading] = useState<boolean>(false)
 
   return (
     <>
@@ -21,6 +20,9 @@ const AddProduct: React.FC<AddProductProps> = ({ addProduct }) => {
         <Button onClick={() => setShowModal(true)}>
           Send product proposal
         </Button>
+        {showLoading && (
+          <div className={styles.messageContainer}>...Loading</div>
+        )}
       </div>
 
       <Modal
@@ -36,9 +38,11 @@ const AddProduct: React.FC<AddProductProps> = ({ addProduct }) => {
             <FaTimes />
           </div>
 
-          <AddProductForm addProduct={addProduct} setShowModal={setShowModal} />
-
-
+          <AddProductForm
+            addProduct={addProduct}
+            setShowModal={setShowModal}
+            setShowLoading={setShowLoading}
+          />
         </div>
       </Modal>
     </>
