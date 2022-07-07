@@ -8,6 +8,26 @@ interface AddProductFormProps {
   setShowModal: (showModal: boolean) => void
 }
 
+async function postData (url = '', payload = {}) {
+  console.log('async', payload)
+  const response = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+  return response.json()
+}
+
+const newProductDefaultValues = {
+  title: '',
+  price: 0,
+  description: '',
+  isFavorite: false,
+  rating: {
+    rate: 0,
+    count: 0
+  }
+}
+
 const AddProductForm: React.FC<AddProductFormProps> = ({
   addProduct,
   setShowModal
@@ -43,14 +63,19 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
     }
 
     // add fake fetch
-    addProduct({
-      isFavorite: false,
-      rating: {
-        rate: 0,
-        count: 0
-      },
+    postData('https://fakestoreapi.com/products', {
+      ...newProductDefaultValues,
       ...formValues
+    }).then(data => {
+      setTimeout(() => {
+        console.log(data)
+        addProduct({
+          ...newProductDefaultValues,
+          ...formValues
+        })
+      }, 2000)
     })
+
     formRef.current?.reset()
     setShowModal(false)
   }
