@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Button from '../tools/Button'
 import ProductInterface from '../../models/product.model'
 import TextField from '../form/TextField'
-
+import styles from './add_product_form.module.css'
 interface AddProductFormProps {
   addProduct: (newProduct: ProductInterface) => void
   setShowModal: (showModal: boolean) => void
@@ -12,6 +12,8 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
   addProduct,
   setShowModal
 }) => {
+  const [showMessage, setShowMessage] = useState<boolean>(false)
+
   let formRef = React.useRef<HTMLFormElement>(null)
 
   const [formValues, setFormValues] = useState<{
@@ -35,8 +37,12 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    //TODO check required fields are filled
+    if (!Object.values(formValues).every(a => a)) {
+      setShowMessage(true)
+      return
+    }
 
+    // add fake fetch
     addProduct({
       isFavorite: false,
       rating: {
@@ -51,12 +57,14 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
 
   return (
     <form onSubmit={event => handleSubmit(event)} ref={formRef}>
+      {showMessage && (
+        <div className={styles.message}>Fill the required fields</div>
+      )}
       <TextField
         name={'title'}
         label={'Product title'}
         placeholder={'Title...'}
         type={'text'}
-        showMessage={false}
         handleChange={handleChange}
         isRequired
       />
@@ -65,7 +73,6 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
         label={'Product details'}
         placeholder={'Price...'}
         type={'text'}
-        showMessage={false}
         handleChange={handleChange}
         isRequired
       />
@@ -73,7 +80,6 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
         name={'description'}
         placeholder={'Start typing product description here...'}
         type={'textarea'}
-        showMessage={false}
         handleChange={handleChange}
         isRequired
       />

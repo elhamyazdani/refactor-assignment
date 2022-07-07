@@ -9,7 +9,6 @@ interface TextFieldProps {
   placeholder?: string
   type: string
   isRequired?: boolean
-  showMessage: false
   handleChange: (e: any) => void
 }
 
@@ -19,7 +18,6 @@ const TextField: React.FC<TextFieldProps> = ({
   placeholder,
   type,
   isRequired,
-  showMessage,
   handleChange
 }) => {
   return (
@@ -46,7 +44,6 @@ const TextField: React.FC<TextFieldProps> = ({
           onChange={handleChange}
         />
       )}
-      <div className='message'>{showMessage && `please fill this field`}</div>
     </div>
   )
 }
