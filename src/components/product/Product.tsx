@@ -14,7 +14,6 @@ const Product: React.FC<ProductProps> = ({ product, setFavoriteCount }) => {
   function toggleFavoriteHandler () {
     setIsFavoriteState(!isFavoriteState)
     product.isFavorite = isFavoriteState
-    console.log(product.isFavorite)
     setFavoriteCount(prev => {
       return isFavoriteState ? prev - 1 : prev + 1
     })
