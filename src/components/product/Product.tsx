@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaStar } from 'react-icons/fa'
 import styles from './product.module.css'
 import ProductInterface from '../../models/product.model'
 
 interface ProductProps {
   product: ProductInterface
-  onFav: (title: string) => void
+  setFavoriteCount: (count: number | ((prev: number) => number)) => void
 }
 
-const Product: React.FC<ProductProps> = ({ product, onFav }) => {
+const Product: React.FC<ProductProps> = ({ product, setFavoriteCount }) => {
+  const [isFavoriteState, setIsFavoriteState] = useState(product.isFavorite)
+
+  function toggleFavoriteHandler () {
+    setIsFavoriteState(!isFavoriteState)
+    product.isFavorite = isFavoriteState
+    console.log(product.isFavorite)
+    setFavoriteCount(prev => {
+      return isFavoriteState ? prev - 1 : prev + 1
+    })
+  }
 
   return (
     <div className={styles.productStyle}>
@@ -25,19 +35,13 @@ const Product: React.FC<ProductProps> = ({ product, onFav }) => {
       </div>
       <div className={styles.actionBar}>
         <div
-          className={`${styles.actionBarItem} ${
-            product.isFavorite && 'active'
-          }`}
+          className={`${styles.actionBarItem} ${isFavoriteState && 'active'}`}
           role='button'
-            onClick={() => {
-            onFav(product.title)
-          }}
+          onClick={toggleFavoriteHandler}
         >
           <FaStar />
           <div className={styles.actionBarItemLabel}>
-            {!!!!product.isFavorite
-              ? 'Remove from favorites'
-              : 'Add to favorites'}
+            {isFavoriteState ? 'Remove from favorites' : 'Add to favorites'}
           </div>
         </div>
       </div>
