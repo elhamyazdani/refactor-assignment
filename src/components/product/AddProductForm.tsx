@@ -10,7 +10,6 @@ interface AddProductFormProps {
 }
 
 async function postData (url = '', payload = {}) {
-  console.log('async', payload)
   const response = await fetch(url, {
     method: 'POST',
     body: JSON.stringify(payload)
@@ -70,7 +69,6 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
       ...formValues
     }).then(data => {
       setTimeout(() => {
-        console.log(data)
         addProduct({
           ...newProductDefaultValues,
           ...formValues

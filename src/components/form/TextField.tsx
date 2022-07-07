@@ -34,6 +34,7 @@ const TextField: React.FC<TextFieldProps> = ({
           placeholder={placeholder}
           className={styles.input}
           onChange={handleChange}
+          data-testid={name}
         />
       )}
       {type === 'textarea' && (
@@ -42,6 +43,7 @@ const TextField: React.FC<TextFieldProps> = ({
           placeholder={placeholder}
           className={styles.input}
           onChange={handleChange}
+          data-testid={name}
         />
       )}
     </div>
